@@ -33,23 +33,5 @@ services:
     #     # - traefik.http.routers.prosafe.tls=true
     #     # - traefik.http.routers.prosafe.tls.certresolver=lets-encrypt
 
-    depends_on:
-      - mysql
-
-  mysql:
-    image: mysql:8.0-debian
-    container_name: app-name-mysql
-    restart: always
-
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-
-    ports:
-      - 3306:3306
-
-    volumes:
-      - ./mysql-data:/var/lib/mysql
-      - ./mysql-conf/my.cnf:/root/.my.cnf
+    extra_hosts:
+      - "mysql-local:host-gateway"

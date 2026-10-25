@@ -16,6 +16,8 @@
 cp .env.example .env
 ```
 
+Note: use `DB_HOST=mysql-local` if MySQL runs on the Ubuntu host.
+
 #### Docker Container
 
 - Login to the Docker Container `/var/www/` Run this Command for application dependencies and DB migration
@@ -24,6 +26,19 @@ cp .env.example .env
 chown -Rh www-data www
 ```
 
+#### Give Storage and Bootstrap Access Rights
+
+```
+chmod -R 777 storage bootstrap/cache
+```
+
+#### edit ./docker-compose.sh file
+
+replace the container name `<conainter-name>` with your application container name
+
+```
+Ex: docker compose exec "$@" test-app #/bin/bash
+```
 #### Laravel Commands
 
 ```
@@ -42,8 +57,15 @@ php artisan migrate
 - Note :  That Folder Include `docker-compose.yml` file
 
 ```
-alias d='docker-compose'
+echo "alias d='docker compose'" >> ~/.bashrc
 ```
+- Check source
+
+```
+source ~/.bashrc
+```
+
+#### Run Docker Compose Commands
 
 - Run
 

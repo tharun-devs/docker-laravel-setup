@@ -2,4 +2,4 @@
 
 # Start a bash shell inside the container
 
-docker-compose exec "$@" videohub /bin/bash
+docker compose exec "$@"  <conainter-name> #/bin/bash
